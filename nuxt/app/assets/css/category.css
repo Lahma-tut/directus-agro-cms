@@ -1,0 +1,9 @@
+.catalog-wrapper {
+  display: grid;
+}
+
+@media (width >= 768px) {
+  .catalog-wrapper {
+    grid-template-columns: 254px 1fr;
+  }
+}
