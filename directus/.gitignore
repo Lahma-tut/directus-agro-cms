@@ -2,6 +2,14 @@
 directus/data/
 directus/uploads/
 directus/extensions/.registry
+directus/extensions/dist/
+.cache-directus/
+
+# Nuxt 3 Specific
+.nuxt/
+.output/
+dist/
+nuxt.config.ts.output.json
 
 # Dependencies
 node_modules/
@@ -17,12 +25,11 @@ yarn-error.log*
 # Environment Variables
 .env
 .env.*
+.env.local
+.env.*.local
 !.env.example
 !.env.test
-# Note: .env.*.local (from Next.js) is covered by .env.*
-
-# Build Output (General)
-# Framework specific build outputs (like .next/, .nuxt/, dist/, .output/, .svelte-kit/, build/) should be in their respective framework .gitignore files.
+!.env.directus.example
 
 # Deployment Platforms
 .netlify/
@@ -35,14 +42,18 @@ coverage/
 # Cache / Temporary
 .eslintcache
 .stylelintcache
+.cache/
 
 # Certificates
 certificates/
 
 # Operating System Files
 .DS_Store
+.DS_Store?
 Thumbs.db
 
 # IDE / Editor Configs
-.idea
-.vscode
+.idea/
+.vscode/
+*.swp
+*.swo

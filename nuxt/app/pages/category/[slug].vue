@@ -60,6 +60,8 @@ const {
   filtered: products
 } = storeToRefs(useCategoryStore())
 
+console.log('products: ', products)
+
 // Вызываем функцию получения данных
 getСategories('category', String(route.params.slug))
 
