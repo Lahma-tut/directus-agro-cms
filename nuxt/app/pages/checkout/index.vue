@@ -155,17 +155,17 @@
                 <div v-if="radio === 'delivery'" class="checkout-transport">
                   <div>
                     Tранспортная компания:
-                    <span class="user-info">{{ transport.company.name }}</span>
+                    <span class="user-info">{{ company.name }}</span>
                   </div>
                   <div>
-                    До терминала в городе: <span class="user-info">{{ transport.terminal }}</span>
+                    До терминала в городе: <span class="user-info">{{ terminal }}</span>
                   </div>
                   <div>
                     До адреса терминала в городе:
-                    <span class="user-info">{{ transport.terminal }}</span>
+                    <span class="user-info">{{ terminal }}</span>
                   </div>
                   <div>
-                    Паспорт: <span class="user-info">{{ transport.terminal }}</span>
+                    Паспорт: <span class="user-info">{{ terminal }}</span>
                   </div>
                 </div>
               </div>
@@ -174,7 +174,7 @@
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore alias officia omnis
               iure commodi magni perspiciatis numquam voluptatum odit fuga!
             </p>
-
+            <pre>{{ user }}</pre>
             <button @click="submitForm" class="button-checkout">Отправить</button>
           </div>
         </section>
@@ -190,6 +190,9 @@ import { useFileDialog } from "@vueuse/core"
 import { useToast } from "primevue/usetoast"
 import { z } from "zod"
 import { zodResolver } from "@primevue/forms/resolvers/zod"
+import { routerKey } from "vue-router"
+
+const router = useRouter()
 
 definePageMeta({ layout: "default", name: "Checkout" })
 
@@ -198,7 +201,6 @@ useSeoMeta({
   description: "This is my amazing site, let me tell you all about it.",
 })
 
-// Данные для ФИО
 const radio = ref("pickup")
 
 const user = ref({
@@ -227,15 +229,9 @@ const ratioСhoice = computed(() => {
 const items = ref([])
 
 const submitForm = (e) => {
-    alert('submitForm')
-    localStorage.test = 2;
-    localStorage.setItem("order", JSON.stringify(user.value))
+  router.push("/checkout/order")
+  localStorage.setItem("order", JSON.stringify(user.value))
 }
-
-// const saveLocalStorage = () => {
-//   localStorage.setItem("cart", JSON.stringify(items.value))
-// }
-
 
 const description = ref(
   "Московская обл., г. Лыткарино, территория промзоны Тураево стр. 36. Понедельник-Пятница с 08:00 до 18:00",

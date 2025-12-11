@@ -78,8 +78,8 @@
 
               <Message v-else-if="!loading && data && !data.length" severity="info">Товары не найдены!</Message>
 
-              <div v-else-if="!loading && (!data || data.length === 0)" class="catalog-card">
-                <Catalog v-for="item in rankItems" :key="item.id" :rank="item" />
+              <div v-else-if="!loading && (!data || data.length === 0)">
+                <Catalog />
               </div>
             </Transition>
           </section>

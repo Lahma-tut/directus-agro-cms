@@ -1,23 +1,26 @@
 <template>
   <div class="order">
     <div class="container">
-      <Headling title="Ваш заказ" />
+      <Heading title="Ваш заказ" />
       <div>
-        Ваш зака
-        <pre>{{ items }}</pre>
-        <p v-for="item in items">{{ item }}</p>
+        <template v-for="(item, i) in items" :key="i">
+          <p>{{ item }}</p>
+        </template>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-// import { storeToRefs } from 'pinia'
-// import { useOrderStore } from '~/stores/order'
+import { storeToRefs } from 'pinia'
+import Heading from '~/components/app/Heading.vue'
+import { useOrderStore } from '~/stores/order'
 
 definePageMeta({ layout: 'default', name: 'Order' })
 
 const cart = useCartStore()
+
+const { radio, user, transport } = storeToRefs(useOrderStore())
 
 useSeoMeta({
   title: "Order",
@@ -35,7 +38,9 @@ onMounted(() => {
   localStorage.getItem("order")
   items.value = JSON.parse(localStorage.getItem("order") || "[]")  
 }
-) // Загрузка order из localStorage
+) 
+
+// Загрузка order из localStorage
 
 const loadLocalStorage = () => {    
   if (localStorage.getItem("order")) {
